@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import ArrowDownIcon from "@heroicons/react/24/solid/ArrowDownIcon";
 import ArrowUpIcon from "@heroicons/react/24/solid/ArrowUpIcon";
-import CurrencyDollarIcon from "@heroicons/react/24/solid/CurrencyDollarIcon";
+import UsersIcon from "@heroicons/react/24/solid/UsersIcon";
 import { Avatar, Card, CardContent, Stack, SvgIcon, Typography } from "@mui/material";
 
-export const OverviewBudget = (props) => {
-  const { difference, positive = false, sx, value } = props;
+export const OverviewTotal = (props) => {
+  const { difference, positive = false, sx, value, title } = props;
 
   return (
     <Card sx={sx}>
@@ -13,19 +13,19 @@ export const OverviewBudget = (props) => {
         <Stack alignItems="flex-start" direction="row" justifyContent="space-between" spacing={3}>
           <Stack spacing={1}>
             <Typography color="text.secondary" variant="overline">
-              Ingresos
+              {title}
             </Typography>
             <Typography variant="h4">{value}</Typography>
           </Stack>
           <Avatar
             sx={{
-              backgroundColor: "error.main",
+              backgroundColor: "success.main",
               height: 56,
               width: 56,
             }}
           >
             <SvgIcon>
-              <CurrencyDollarIcon />
+              <UsersIcon />
             </SvgIcon>
           </Avatar>
         </Stack>
@@ -40,7 +40,7 @@ export const OverviewBudget = (props) => {
               </Typography>
             </Stack>
             <Typography color="text.secondary" variant="caption">
-              Mes pasado
+              Último mes
             </Typography>
           </Stack>
         )}
@@ -49,9 +49,9 @@ export const OverviewBudget = (props) => {
   );
 };
 
-OverviewBudget.prototypes = {
+OverviewTotal.propTypes = {
   difference: PropTypes.number,
   positive: PropTypes.bool,
-  sx: PropTypes.object,
   value: PropTypes.string.isRequired,
+  sx: PropTypes.object,
 };
